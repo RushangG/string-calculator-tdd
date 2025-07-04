@@ -12,3 +12,7 @@ test('single number returns its value', () => {
 test('two numbers, comma delimited, returns the sum', () => {
   expect(add('1,2')).toBe(3);
 });
+
+test('supports custom delimiter', () => {
+  expect(add('//;\n1;2')).toBe(3);
+});
