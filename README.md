@@ -2,7 +2,34 @@
 
 ## Project Overview
 
-This project implements a simple String Calculator as part of the Incubyte TDD Assessment. The goal is to practice Test Driven Development (TDD) using JavaScript and Jest. The calculator can add numbers provided in a string format, supporting requirements as they are introduced incrementally through tests.
+This project implements a robust String Calculator as part of the Incubyte TDD Assessment. The goal is to practice Test Driven Development (TDD) using JavaScript and Jest, while demonstrating clean code, maintainability, and professionalism.
+
+---
+
+## Why I Chose JavaScript & Jest
+
+I selected **JavaScript** because it is versatile, beginner-friendly, and widely used for both front-end and back-end development. It allows for rapid prototyping and clear demonstration of algorithms.
+
+I chose **Jest** because it is a powerful and easy-to-use testing framework. Jest supports features like snapshot testing and built-in mocks, making it perfect for TDD and ensuring high code quality.
+
+---
+
+## What is TDD & Why is it Important?
+
+**Test Driven Development (TDD)** is a software development approach where you write tests *before* writing the actual code. This ensures:
+- Code is thoroughly tested from the start.
+- Requirements are clear and met.
+- Refactoring is safe and easy.
+- Code quality and maintainability are improved.
+
+---
+
+## My Approach to Clean Code & Craftsmanship
+
+- **Readable:** Simple, well-named functions and variables.
+- **Maintainable:** Modular code and clear separation of concerns.
+- **Well-tested:** All edge cases covered with meaningful test names.
+- **Consistent:** Used ESLint for code style and formatting.
 
 ---
 
@@ -10,9 +37,11 @@ This project implements a simple String Calculator as part of the Incubyte TDD A
 
 - Returns `0` for an empty string input.
 - Returns the number itself when only one number is provided.
-- Adds two comma-separated numbers.
-- Supports any amount of comma- or newline-separated numbers.
-- Supports custom single-character delimiters (e.g. `//;\n1;2`).
+- Adds numbers separated by commas or newlines.
+- Supports any amount of numbers.
+- Supports custom single or multi-character delimiters (e.g. `//;\n1;2`, `//[***]\n1***2***3`).
+- Supports multiple delimiters (e.g. `//[*][%]\n1*2%3`).
+- Ignores numbers greater than 1000 (e.g. `2,1001` returns `2`).
 - Throws an exception when negative numbers are provided, listing all negative numbers in the error message.
 
 ---
@@ -30,20 +59,15 @@ This project implements a simple String Calculator as part of the Incubyte TDD A
    npm install
    ```
 
-3. **Run tests**
+3. **Run linting**
+   ```bash
+   npm run lint
+   ```
+
+4. **Run tests**
    ```bash
    npm test
    ```
-
----
-
-## Description of My TDD Process
-
-1. **Start Simple:** I began by writing the first test for the simplest requirement (e.g., empty string returns 0).
-2. **Red/Green/Refactor:** I wrote just enough code to make the test pass, then refactored if necessary.
-3. **Incremental Requirements:** I added the next test for each new requirement (one number, two numbers, custom delimiters, negatives, etc.), letting the tests drive the implementation.
-4. **Repeat:** I repeated this cycle, ensuring every new feature had a corresponding test before implementation.
-5. **Fully Tested:** This process continued until all requirements were satisfied and the codebase was fully tested.
 
 ---
 
@@ -57,7 +81,28 @@ console.log(add("1")); // 1
 console.log(add("1,2")); // 3
 console.log(add("1\n2,3")); // 6
 console.log(add("//;\n1;2")); // 3
+console.log(add("//[***]\n1***2***3")); // 6
+console.log(add("//[*][%]\n1*2%3")); // 6
+console.log(add("2,1001")); // 2
 ```
+
+---
+
+## Test Coverage
+
+The solution is extensively tested with Jest, including snapshot testing. Covered scenarios include:
+
+- Empty string input.
+- Single number input.
+- Two and multiple numbers (comma delimited).
+- Newlines as delimiters.
+- Custom single-character delimiters.
+- Custom multi-character delimiters.
+- Multiple delimiters (including multi-character).
+- Numbers greater than 1000 are ignored.
+- Negative numbers throw errors listing all negative values.
+
+You can view all the test cases in [`calculator.test.js`](./calculator.test.js).
 
 ---
 
@@ -69,6 +114,16 @@ Below is a screenshot showing all tests passing in VS Code:
 
 ---
 
-## Contact
+## Code Quality & Linting
 
-Feel free to reach out if you have any questions, suggestions, or feedback!
+- The codebase follows best practices, with ESLint configured for consistency.
+- JSDoc comments are included for main functions.
+
+---
+
+## About Me
+
+Hi! I’m Rushang Gajera, a passionate developer who loves clean code and learning new things.  
+- [Email](mailto:gajerarushang17@gmail.com)
+
+**Thank you for reviewing my assignment! I look forward to your feedback.**
