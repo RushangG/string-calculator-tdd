@@ -40,9 +40,10 @@ I chose **Jest** because it is a powerful and easy-to-use testing framework. Jes
 - Adds numbers separated by commas or newlines.
 - Supports any amount of numbers.
 - Supports custom single or multi-character delimiters (e.g. `//;\n1;2`, `//[***]\n1***2***3`).
-- Supports multiple delimiters (e.g. `//[*][%]\n1*2%3`).
+- Supports multiple delimiters (e.g. `//[*][%]\n1*2%3`, `//[***][%%]\n1***2%%3`).
 - Ignores numbers greater than 1000 (e.g. `2,1001` returns `2`).
 - Throws an exception when negative numbers are provided, listing all negative numbers in the error message.
+- **Extensive new test cases:** All advanced cases and edge conditions are now tested, including custom delimiter syntax, multiple and multi-character delimiters, negative number checks, and numbers > 1000.
 
 ---
 
@@ -69,6 +70,11 @@ I chose **Jest** because it is a powerful and easy-to-use testing framework. Jes
    npm test
    ```
 
+   > **Note:** Snapshot tests are included and up-to-date. If you change logic or add new outputs, update snapshots with:
+   > ```bash
+   > npm test -- -u
+   > ```
+
 ---
 
 ## Example Usage
@@ -83,6 +89,7 @@ console.log(add("1\n2,3")); // 6
 console.log(add("//;\n1;2")); // 3
 console.log(add("//[***]\n1***2***3")); // 6
 console.log(add("//[*][%]\n1*2%3")); // 6
+console.log(add("//[***][%%]\n1***2%%3")); // 6
 console.log(add("2,1001")); // 2
 ```
 
@@ -98,9 +105,10 @@ The solution is extensively tested with Jest, including snapshot testing. Covere
 - Newlines as delimiters.
 - Custom single-character delimiters.
 - Custom multi-character delimiters.
-- Multiple delimiters (including multi-character).
+- Multiple delimiters (including multi-character and combinations).
 - Numbers greater than 1000 are ignored.
 - Negative numbers throw errors listing all negative values.
+- **All new and advanced edge cases are covered via updated test suite.**
 
 You can view all the test cases in [`calculator.test.js`](./calculator.test.js).
 
