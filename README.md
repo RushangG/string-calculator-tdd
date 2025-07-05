@@ -43,7 +43,8 @@ I chose **Jest** because it is a powerful and easy-to-use testing framework. Jes
 - Supports multiple delimiters (e.g. `//[*][%]\n1*2%3`, `//[***][%%]\n1***2%%3`).
 - Ignores numbers greater than 1000 (e.g. `2,1001` returns `2`).
 - Throws an exception when negative numbers are provided, listing all negative numbers in the error message.
-- **Extensive new test cases:** All advanced cases and edge conditions are now tested, including custom delimiter syntax, multiple and multi-character delimiters, negative number checks, and numbers > 1000.
+- Tracks the number of times the `add()` method is called (`getCalledCount()`).
+- **Extensive test cases:** All advanced cases and edge conditions are tested, including custom delimiter syntax, multiple and multi-character delimiters, negative number checks, and numbers > 1000.
 
 ---
 
@@ -80,17 +81,19 @@ I chose **Jest** because it is a powerful and easy-to-use testing framework. Jes
 ## Example Usage
 
 ```js
-const { add } = require('./calculator');
+const { StringCalculator } = require('./calculator');
+const calc = new StringCalculator();
 
-console.log(add("")); // 0
-console.log(add("1")); // 1
-console.log(add("1,2")); // 3
-console.log(add("1\n2,3")); // 6
-console.log(add("//;\n1;2")); // 3
-console.log(add("//[***]\n1***2***3")); // 6
-console.log(add("//[*][%]\n1*2%3")); // 6
-console.log(add("//[***][%%]\n1***2%%3")); // 6
-console.log(add("2,1001")); // 2
+console.log(calc.add("")); // 0
+console.log(calc.add("1")); // 1
+console.log(calc.add("1,2")); // 3
+console.log(calc.add("1\n2,3")); // 6
+console.log(calc.add("//;\n1;2")); // 3
+console.log(calc.add("//[***]\n1***2***3")); // 6
+console.log(calc.add("//[*][%]\n1*2%3")); // 6
+console.log(calc.add("//[***][%%]\n1***2%%3")); // 6
+console.log(calc.add("2,1001")); // 2
+console.log(calc.getCalledCount()); // 9
 ```
 
 ---
@@ -108,6 +111,7 @@ The solution is extensively tested with Jest, including snapshot testing. Covere
 - Multiple delimiters (including multi-character and combinations).
 - Numbers greater than 1000 are ignored.
 - Negative numbers throw errors listing all negative values.
+- `getCalledCount()` method works.
 - **All new and advanced edge cases are covered via updated test suite.**
 
 You can view all the test cases in [`calculator.test.js`](./calculator.test.js).
